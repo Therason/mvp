@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   // mongo connection
   const conn = await MongoClient.connect(
-    "mongodb+srv://localost:27017/mvp?retryWrites=true&w=majority"
+    "mongodb://127.0.0.1:27017/mvp?retryWrites=true&w=majority"
   );
   const db = conn.db();
 
