@@ -4,9 +4,10 @@ export default function SignInOut() {
   const { data: session } = useSession()
 
   if (session) {
+    console.log(session)
     return (
       <>
-        Signed in as {session.user} <br />
+        <h1>hi {session.user?.name}</h1>
         <button onClick={() => signOut()}>Sign out</button>
       </>
     )
