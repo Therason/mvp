@@ -35,6 +35,7 @@ export async function getServerSideProps(context) {
     }
   } catch {
     // 404 if post id isn't found
+    conn.close();
     return {
       notFound: true,
     }
