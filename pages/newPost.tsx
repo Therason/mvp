@@ -29,6 +29,7 @@ export default function NewPost() {
         throw new Error(data.message || "Error creating new post");
       }
 
+      // TODO: redirect to post on success
       console.log(data);
 
     } catch(error) {
