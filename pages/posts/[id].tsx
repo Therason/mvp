@@ -1,10 +1,16 @@
 import connect from "../../lib/db";
 import { ObjectId } from "mongodb";
+import Image from "next/image";
 
 export default function Post({ post }) {
   console.log(post);
   return (
-    <h1>Post</h1>
+    <>
+      <h1>Post</h1>
+      <p>{post.username}</p>
+      <Image src={post.url} alt={post.description} width={800} height={800} style={{objectFit: 'contain'}}/>
+      <p>{post.description}</p>
+    </>
   );
 }
 
