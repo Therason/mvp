@@ -1,5 +1,5 @@
-import { MongoClient } from "mongodb";
-import { hash } from "bcryptjs";
+import connect from "../../../lib/db";
+import { hashPass } from "../../../lib/auth";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -24,9 +24,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   // mongo connection
-  const conn = await MongoClient.connect(
-    "mongodb://127.0.0.1:27017/mvp?retryWrites=true&w=majority"
-  );
+  const conn = await connect();
   const db = conn.db();
 
   // check if username is taken
@@ -42,7 +40,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   // create user
   const status = await db.collection("users").insertOne({
     username,
-    password: await hash(password, 12),
+    password: await hashPass(password),
   });
 
   res.status(201).json({ message: "User created", ...status });
