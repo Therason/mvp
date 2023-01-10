@@ -7,12 +7,12 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
-  color: white;
-  background: black
+  color: #F2EFE9;
+  background: rgb(21, 20, 20);
+  position: relative;
 }
 
 a {
