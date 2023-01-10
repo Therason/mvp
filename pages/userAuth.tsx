@@ -11,6 +11,7 @@ export default function UserAuth() {
       <>
         <h1>Login</h1>
         <LoginForm />
+        <button onClick={() => setLogin(false)}>Don&apos;t have an account?</button>
       </>
     )
   }
@@ -19,6 +20,7 @@ export default function UserAuth() {
     <>
       <h1>Sign Up</h1>
       <SignupForm />
+      <button onClick={() => setLogin(true)}>Have an account already?</button>
     </>
   )
 }
