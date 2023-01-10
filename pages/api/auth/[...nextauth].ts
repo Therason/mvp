@@ -1,11 +1,11 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { AuthOptions } from "next-auth";
 
 import connect from "../../../lib/db";
 import { verify } from "../../../lib/auth";
 
-// setup jwt for sessions and credentials authentications
-export default NextAuth({
+export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
@@ -60,4 +60,7 @@ export default NextAuth({
       },
     }),
   ],
-});
+};
+
+// setup jwt for sessions and credentials authentications
+export default NextAuth(authOptions);
