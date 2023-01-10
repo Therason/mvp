@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import connect from "../../lib/db";
 import { ObjectId } from "mongodb";
 
@@ -14,16 +13,24 @@ export async function getServerSideProps(context) {
   const conn = await connect();
   const db = conn.db();
 
-  // context params can be used to find the dynamic route
-  const post = await db.collection("posts").findOne({_id: new ObjectId(context.params.id)});
+  try {
+    // context params can be used to find the dynamic route
+    const post = await db.collection("posts").findOne({_id: new ObjectId(context.params.id)});
+    conn.close();
 
-  // id has to be converted to string
-  return {
-    props: {
-      post: {
-        ...post,
-        _id: post._id.toString()
+    // id has to be converted to string
+    return {
+      props: {
+        post: {
+          ...post,
+          _id: post._id.toString()
+        }
       }
+    }
+  } catch {
+    // 404 if post id isn't found
+    return {
+      notFound: true,
     }
   }
 }
