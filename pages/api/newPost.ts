@@ -26,6 +26,8 @@ export default async function handler(
     return;
   }
 
+  console.log(req.body);
+
   // TODO: handle creating a new post
   res.status(200).json({ message: "Session valid" });
 }

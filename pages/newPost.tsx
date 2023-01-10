@@ -7,7 +7,33 @@ export default function NewPost() {
   const description = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
+    if (!link.current || ! description.current) return;
+
+    const enteredLink = description.current.value;
+    const enteredDescription = description.current.value;
+
+    if (enteredLink.length === 0) return;
+
+    try {
+      const res = await fetch('/api/newPost', {
+        method: 'POST',
+        body: JSON.stringify({ url: enteredLink, description: enteredDescription }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Error creating new post");
+      }
+
+      console.log(data);
+
+    } catch(error) {
+      console.error(error);
+    }
 
   }
 
