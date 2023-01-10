@@ -1,6 +1,9 @@
+// page where users make posts
+// TODO: protect this route, maybe through middleware
 export default function NewPost() {
   const handleSubmit = async () => {
     try {
+      // should only work if user is authenticated
       const res = await fetch('/api/post', {
         method: 'POST',
         body: JSON.stringify({ message: 'hello!!' }),
@@ -18,6 +21,7 @@ export default function NewPost() {
     }
   }
 
+  // TODO: setup submission form
   return (
     <>
       <h1>New Post</h1>
