@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import { useRef } from "react";
 
 // page where users make posts
@@ -6,8 +7,14 @@ export default function NewPost() {
   const link = useRef<HTMLInputElement>(null);
   const description = useRef<HTMLInputElement>(null);
 
+  const {data: session, status} = useSession();
+
   const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!session) return;
+    console.log(session.user);
+
     if (!link.current || ! description.current) return;
 
     const enteredLink = link.current.value;
@@ -18,7 +25,7 @@ export default function NewPost() {
     try {
       const res = await fetch('/api/newPost', {
         method: 'POST',
-        body: JSON.stringify({ url: enteredLink, description: enteredDescription }),
+        body: JSON.stringify({ url: enteredLink, description: enteredDescription, username: session.user.username }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -29,7 +36,7 @@ export default function NewPost() {
         throw new Error(data.message || "Error creating new post");
       }
 
-      // TODO: redirect to post on success
+      // TODO: redirect to post on success, use data.insertedId
       console.log(data);
 
     } catch(error) {
