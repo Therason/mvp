@@ -7,7 +7,7 @@ type Data = {
   message: string;
 };
 
-// API route to allow users to post images
+// API route to allow users to POST images, protected route
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>

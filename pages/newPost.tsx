@@ -10,7 +10,7 @@ export default function NewPost() {
     e.preventDefault();
     if (!link.current || ! description.current) return;
 
-    const enteredLink = description.current.value;
+    const enteredLink = link.current.value;
     const enteredDescription = description.current.value;
 
     if (enteredLink.length === 0) return;
