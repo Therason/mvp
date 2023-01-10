@@ -25,7 +25,6 @@ export default async function handler(
     res.status(401).json({ message: "ERROR: No session found" });
     return;
   }
-  console.log(session);
 
   // TODO: handle creating a new post
   res.status(200).json({ message: "Session valid" });
