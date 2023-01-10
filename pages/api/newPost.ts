@@ -45,5 +45,7 @@ export default async function handler(
     username,
   });
 
+  conn.close();
+
   res.status(200).json({ message: "Post created!", ...status });
 }

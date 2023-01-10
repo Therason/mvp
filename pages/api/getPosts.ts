@@ -24,5 +24,7 @@ export default async function handler(
   // TODO: pagination
   const docs = await db.collection("posts").find({}).toArray();
 
+  conn.close();
+
   res.status(200).json({ message: "Success", data: docs });
 }
