@@ -1,27 +1,34 @@
-import { useEffect, useRef } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useRef } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function LoginForm() {
+  const router = useRouter()
+
   const username = useRef<HTMLInputElement>(null)
   const password = useRef<HTMLInputElement>(null)
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    // TODO: alert user that the fields are required
     if (!username.current || !password.current) return
     e.preventDefault()
+
+    // attempt to sign in using provided credentials
     const result = await signIn('credentials', {
       redirect: false,
       username: username.current.value,
       password: password.current.value,
     })
-    console.log(result)
+    console.log('result', result)
+
+    // redirect on success
+    if (!result.error && result.ok) {
+      router.push('/')
+    }
+
+    // TODO: alert user of invalid credentials
+    console.error(result.error)
   }
-
-  const { data: session, status } = useSession()
-
-  useEffect(() => {
-    console.log(session)
-    console.log(status)
-  }, [status, session])
 
   return (
     <>

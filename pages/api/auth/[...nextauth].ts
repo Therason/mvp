@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import connect from "../../../lib/db";
 import { verify } from "../../../lib/auth";
 
+// setup jwt for sessions and credentials authentications
 export default NextAuth({
   session: {
     strategy: "jwt",
@@ -33,6 +34,7 @@ export default NextAuth({
       async authorize(credentials) {
         if (!credentials) throw new Error("No credentials provided");
 
+        // connect to db, find username
         const conn = await connect();
         const users = conn.db().collection("users");
 
@@ -45,14 +47,15 @@ export default NextAuth({
           throw new Error("User not found");
         }
 
+        // check hashed password
         const valid = await verify(credentials?.password, user.password);
         if (!valid) {
           await conn.close();
           throw new Error("Invalid password");
         }
 
+        // credentials are valid
         await conn.close();
-        console.log(user);
         return { username: user.username, id: user._id.toString() };
       },
     }),
