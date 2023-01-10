@@ -28,12 +28,11 @@ export default async function handler(
   }
 
   // ensure request body contains a url
-  const { url, description } = req.body;
+  const { url, description, username } = req.body;
   if (!url || url === "") {
     res.status(422).json({ message: "ERROR: Malformed request" });
     return;
   }
-  console.log(req.body);
 
   // connect to the DB
   const conn = await connect();
@@ -43,6 +42,7 @@ export default async function handler(
   const status = await db.collection("posts").insertOne({
     url,
     description,
+    username,
   });
 
   res.status(200).json({ message: "Post created!", ...status });

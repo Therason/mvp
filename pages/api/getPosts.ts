@@ -21,8 +21,8 @@ export default async function handler(
   const conn = await connect();
   const db = conn.db();
 
+  // TODO: pagination
   const docs = await db.collection("posts").find({}).toArray();
-  console.log(docs);
 
   res.status(200).json({ message: "Success", data: docs });
 }
