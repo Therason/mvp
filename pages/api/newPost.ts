@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+import connect from "../../lib/db";
 
 type Data = {
   message: string;
@@ -26,8 +27,23 @@ export default async function handler(
     return;
   }
 
+  // ensure request body contains a url
+  const { url, description } = req.body;
+  if (!url || url === "") {
+    res.status(422).json({ message: "ERROR: Malformed request" });
+    return;
+  }
   console.log(req.body);
 
-  // TODO: handle creating a new post
-  res.status(200).json({ message: "Session valid" });
+  // connect to the DB
+  const conn = await connect();
+  const db = conn.db();
+
+  // create new post
+  const status = await db.collection("posts").insertOne({
+    url,
+    description,
+  });
+
+  res.status(200).json({ message: "Post created!", ...status });
 }
