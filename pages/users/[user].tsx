@@ -1,10 +1,19 @@
 import connect from "../../lib/db"
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function User({ posts }) {
-  console.log(posts)
+  const router = useRouter();
+
+  // redirect to post
+  const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    router.push(`/posts/${(e.target as HTMLElement).id}`)
+  }
+
   return (
     <>
       <h1>User</h1>
+      {posts.map((post) => <Image onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} width="400" height="400" style={{objectFit: 'cover'}} />)}
     </>
   )
 }
