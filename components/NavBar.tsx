@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Header = styled.header`
   display: inline-flex;
+  justify-content: space-around;
   gap: 20px;
   background: rgba(21,20,20,0.75);
   width: 100vw;
@@ -14,8 +15,13 @@ const Header = styled.header`
   position: sticky;
   top: 0px;
 
+  * {
+    font-weight: bold;
+  }
+
   a {
     font-size: 2rem;
+    color: #DB5461
   }
 
   button {
@@ -32,7 +38,7 @@ export default function NavBar() {
 
   return (
     <Header>
-      <Link href="/">Art Block Avenue</Link>
+      <Link href="/">Home</Link>
       <Link href="/browse">Browse</Link>
       {/* Display correct button if user is logged in or not */}
       {!session && <Link href="/userAuth">Log In</Link>}
