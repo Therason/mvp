@@ -8,8 +8,24 @@ export default NextAuth({
   session: {
     strategy: "jwt",
   },
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token.user;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+  },
+  pages: {
+    signIn: "/userAuth",
+  },
   providers: [
     CredentialsProvider({
+      name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
@@ -36,7 +52,8 @@ export default NextAuth({
         }
 
         await conn.close();
-        return { username: user.username, id: user.id };
+        console.log(user);
+        return { username: user.username, id: user._id.toString() };
       },
     }),
   ],
