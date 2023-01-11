@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { keyframes } from "styled-components";
 import Image from "next/image";
 import { Rowdies } from "@next/font/google";
 import { Roboto_Mono } from "@next/font/google";
@@ -74,20 +75,41 @@ const Container2 = styled.div`
   background: #ff6631;
 `;
 
-const Img = styled(Image)`
-  position: absolute;
-  z-index: -1;
-  width: 600px;
-  height: 600px;
-  transform: rotate(-20deg)
+const ImgAnimation = keyframes`
+  0% {
+    transform: translateX(-100vw) rotate(-20deg);
+  }
+  100% {
+    transform: translateX(100vw) rotate(20deg) scale(0.9);
+  }
 `;
+
+const Mona = styled(Image)`
+  position: absolute;
+  transform: translateX(-200%);
+  z-index: -1;
+  animation: ${ImgAnimation} 45s linear infinite;
+  animation-delay: 0s;
+`;
+
+const Lit = styled(Image)`
+  position: absolute;
+  margin-top: 200px;
+  transform: translateX(-200vw);
+  z-index: -2;
+  animation: ${ImgAnimation} 60s linear infinite;
+  animation-delay: 0s;
+`;
+
+
 
 // homepage component
 export default function Home() {
   return (
     <>
       <Container1>
-        <Img src="/monalisa.jpg" alt="mona lisa" width="800" height="800"/>
+        <Mona src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
+        <Lit src="/le_lit.jpg" alt="le lit" width="200" height="200" />
         <div>
           <h1><span className={merriweather.className}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
           <p>Placeholder text</p>
