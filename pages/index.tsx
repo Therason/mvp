@@ -44,6 +44,10 @@ const Container1 = styled.div`
 
   h1 {
     font-size: 4rem;
+    color: #222222;
+  }
+
+  .rainbow {
     background: linear-gradient(
                 90deg,
                 #f44250,
@@ -71,14 +75,6 @@ const Container1 = styled.div`
   }
 `;
 
-const Container2 = styled.div`
-  width: 100%;
-  height: 90vh;
-  background: #ff6631;
-  color: #222222;
-  z-index: 1;
-`;
-
 // scrolling image animation
 const ImgAnimation = keyframes`
   0% {
@@ -101,6 +97,32 @@ const Img = styled(Image)<Props>`
   z-index: -2;
   animation: ${ImgAnimation} ${props => props.time}s linear infinite;
   animation-delay: 0s;
+`;
+
+const Container2 = styled.div`
+  width: 100%;
+  height: 90vh;
+  background: #f1c522;
+  color: #222222;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+
+  :before {
+    content: "";
+    width: 100%;
+    height: 50vh;
+    background: #222;
+    position: absolute;
+    top: 90vh;
+    right: -10vw;
+    transform: rotate(-20deg);
+    box-shadow: 0 0 0 40px #f44250;
+  }
+
+  h1 {
+    font-size: 6rem;
+  }
 `;
 
 // homepage component
@@ -134,12 +156,12 @@ export default function Home() {
           <Img time={60} margin={-100} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
         </div>
         <div className="rellax">
-          <h1><span className={merriweather.className}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
+          <h1><span className={merriweather.className}>Art</span> <span className={`${rowdies.className} rainbow`}>Block</span> <span className={roboto.className}>Avenue</span></h1>
           <p>Placeholder text</p>
         </div>
       </Container1>
       <Container2>
-        <h1 className="rellaxH">Social media without the hassle</h1>
+        <h1 className="rellaxH">Social media without the hassle.</h1>
       </Container2>
     </>
   )
