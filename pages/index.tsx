@@ -6,6 +6,7 @@ import { Roboto_Mono } from "@next/font/google";
 import { Merriweather } from "@next/font/google";
 import { useEffect } from "react";
 import Rellax from "rellax";
+import Link from "next/link";
 
 const rowdies = Rowdies({ weight: "400", subsets: ["latin"]});
 const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
@@ -165,7 +166,7 @@ export default function Home() {
         </div>
       </Container1>
       <Container2>
-        <h1 className="rellax">Social media without the hassle. <Image src="/github.svg" width="100" height="100" alt="github logo" /></h1>
+        <h1 className="rellax">Social media without the hassle. <Link href="https://github.com/Therason/mvp" target="_blank"><Image src="/github.svg" width="100" height="100" alt="github logo" /></Link></h1>
 
       </Container2>
     </>
