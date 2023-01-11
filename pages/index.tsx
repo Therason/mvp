@@ -107,6 +107,7 @@ const Container2 = styled.div`
   z-index: 1;
   position: relative;
   overflow: hidden;
+  display: flex;
 
   :before {
     content: "";
@@ -123,6 +124,7 @@ const Container2 = styled.div`
   h1 {
     font-size: 6rem;
     width: 50vw;
+    height: fit-content;
   }
 `;
 
@@ -163,7 +165,8 @@ export default function Home() {
         </div>
       </Container1>
       <Container2>
-        <h1 className="rellax">Social media without the hassle.</h1>
+        <h1 className="rellax">Social media without the hassle. <Image src="/github.svg" width="100" height="100" alt="github logo" /></h1>
+
       </Container2>
     </>
   )
