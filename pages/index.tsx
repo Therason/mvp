@@ -122,6 +122,7 @@ const Container2 = styled.div`
 
   h1 {
     font-size: 6rem;
+    width: 50vw;
   }
 `;
 
@@ -131,7 +132,7 @@ export default function Home() {
   // init parallax classes
   useEffect(() => {
     new Rellax('.rellax', {
-      speed: -1,
+      speed: -2,
       center: false,
       wrapper: null,
       round: true,
@@ -152,16 +153,17 @@ export default function Home() {
     <>
       <Container1>
         <div className="rellaxI">
-          <Img time={80} margin={100} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
-          <Img time={60} margin={-100} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
+          <Img time={90} margin={100} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
+          <Img time={70} margin={-200} src="/starry.jpg" alt="starry night" width="300" height="300" />
+          <Img time={50} margin={-100} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
         </div>
         <div className="rellax">
-          <h1><span className={merriweather.className}>Art</span> <span className={`${rowdies.className} rainbow`}>Block</span> <span className={roboto.className}>Avenue</span></h1>
-          <p>Placeholder text</p>
+          <h1><span className={`${merriweather.className} rainbow`}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
+          <p>Because we really need another social media site I guess...</p>
         </div>
       </Container1>
       <Container2>
-        <h1 className="rellaxH">Social media without the hassle.</h1>
+        <h1 className="rellax">Social media without the hassle.</h1>
       </Container2>
     </>
   )
