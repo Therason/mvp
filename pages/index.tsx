@@ -24,6 +24,7 @@ const Container1 = styled.div`
     padding-bottom: 2rem;
     background: url("/rip.svg") bottom;
     position: relative;
+    z-index: -1;
   }
 
   div::before {
