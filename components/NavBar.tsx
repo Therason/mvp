@@ -8,7 +8,7 @@ const Header = styled.header`
   justify-content: space-around;
   align-items: center;
   gap: 20px;
-  background: rgba(21,20,20,0.9);
+  background: rgba(21,20,20,0.95);
   width: 100vw;
   max-width: 100%;
   height: 10vh;
@@ -21,14 +21,23 @@ const Header = styled.header`
   }
 
   a {
-    font-size: 2rem;
-    color: #DB5461
+    font-size: 2.5rem;
+    color: #f44250;
   }
+
+  a:nth-child(2) {
+    color: #fecc1b;
+  }
+
+  a:nth-child(3) {
+    color: #3992ff;
+  }
+
 
   button {
     background: none;
-    color: inherit;
-    font-size: 2rem;
+    color: #6bd968;
+    font-size: 2.5rem;
     cursor: pointer;
     border: none;
   }
