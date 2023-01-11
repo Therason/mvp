@@ -101,6 +101,20 @@ const Lit = styled(Image)`
   animation-delay: 0s;
 `;
 
+interface Props {
+  margin?: number;
+  time: number;
+};
+
+const Img = styled(Image)<Props>`
+  position: absolute;
+  margin-top: ${props => props.margin || 0};
+  transform: translateX(-200vw);
+  z-index: -2;
+  animation: ${ImgAnimation} ${props => props.time}s linear infinite;
+  animation-delay: 0s;
+`;
+
 
 
 // homepage component
@@ -108,8 +122,8 @@ export default function Home() {
   return (
     <>
       <Container1>
-        <Mona src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
-        <Lit src="/le_lit.jpg" alt="le lit" width="200" height="200" />
+        <Img time={60} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
+        <Img time={80} margin={200} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
         <div>
           <h1><span className={merriweather.className}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
           <p>Placeholder text</p>
