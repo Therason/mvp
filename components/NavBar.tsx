@@ -17,7 +17,28 @@ const Header = styled.header`
   top: 0px;
 
   * {
+    position: relative;
     font-weight: bold;
+    padding: 0.5rem 1rem;
+  }
+
+  *:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2f2c2cf2;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s linear;
+  }
+
+  *:hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   a {

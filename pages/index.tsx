@@ -73,8 +73,10 @@ const Container2 = styled.div`
   width: 100%;
   height: 90vh;
   background: #ff6631;
+  color: #222222;
 `;
 
+// scrolling image animation
 const ImgAnimation = keyframes`
   0% {
     transform: translateX(-100vw) rotate(-20deg);
@@ -103,14 +105,16 @@ export default function Home() {
   return (
     <>
       <Container1>
-        <Img time={60} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
         <Img time={80} margin={200} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
+        <Img time={60} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
         <div>
           <h1><span className={merriweather.className}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
           <p>Placeholder text</p>
         </div>
       </Container1>
-      <Container2></Container2>
+      <Container2>
+        <h1>Social media without the hassle</h1>
+      </Container2>
     </>
   )
 }
