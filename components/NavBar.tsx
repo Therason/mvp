@@ -14,6 +14,7 @@ const Header = styled.header`
   max-width: 100%;
   height: 10vh;
   padding: 1rem;
+  z-index: 100;
   position: sticky;
   top: 0px;
 

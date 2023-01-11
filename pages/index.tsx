@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Rowdies } from "@next/font/google";
 import { Roboto_Mono } from "@next/font/google";
 import { Merriweather } from "@next/font/google";
+import { useEffect } from "react";
+import Rellax from "rellax";
 
 const rowdies = Rowdies({ weight: "400", subsets: ["latin"]});
 const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
@@ -20,18 +22,18 @@ const Container1 = styled.div`
   position: relative;
   overflow: hidden;
 
-  div {
-    width: 80%;
-    padding-bottom: 2rem;
+  .rellax {
+    width: 100%;
+    padding: 2rem 0 3rem;
     background: url("/rip.svg") bottom;
     position: relative;
-    z-index: -1;
+    z-index: 1;
   }
 
-  div::before {
+  .rellax::before {
     content: "";
     width: 100%;
-    height: 20px;
+    height: 21px;
     background: url("/rip.svg") bottom;
     transform: rotate(180deg);
     position: absolute;
@@ -74,6 +76,7 @@ const Container2 = styled.div`
   height: 90vh;
   background: #ff6631;
   color: #222222;
+  z-index: 1;
 `;
 
 // scrolling image animation
@@ -102,18 +105,41 @@ const Img = styled(Image)<Props>`
 
 // homepage component
 export default function Home() {
+
+  // init parallax classes
+  useEffect(() => {
+    new Rellax('.rellax', {
+      speed: -1,
+      center: false,
+      wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false
+    });
+    new Rellax('.rellaxI', {
+      speed: 3,
+      center: true,
+      wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false
+    });
+  }, []);
+
   return (
     <>
       <Container1>
-        <Img time={80} margin={200} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
-        <Img time={60} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
-        <div>
+        <div className="rellaxI">
+          <Img time={80} margin={100} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
+          <Img time={60} margin={-100} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
+        </div>
+        <div className="rellax">
           <h1><span className={merriweather.className}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
           <p>Placeholder text</p>
         </div>
       </Container1>
       <Container2>
-        <h1>Social media without the hassle</h1>
+        <h1 className="rellaxH">Social media without the hassle</h1>
       </Container2>
     </>
   )
