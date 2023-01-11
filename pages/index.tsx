@@ -108,7 +108,7 @@ interface Props {
 
 const Img = styled(Image)<Props>`
   position: absolute;
-  margin-top: ${props => props.margin || 0};
+  margin-top: ${props => props.margin || 0}px;
   transform: translateX(-200vw);
   z-index: -2;
   animation: ${ImgAnimation} ${props => props.time}s linear infinite;
