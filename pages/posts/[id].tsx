@@ -11,6 +11,7 @@ const Container = styled.div`
 
   img {
     background: #353333;
+    border: 1px solid black;
   }
 `;
 
