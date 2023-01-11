@@ -1,10 +1,12 @@
 import connect from "../../lib/db"
 import ImageList from "../../components/ImageList";
+import { useRouter } from "next/router";
 
 export default function User({ posts }) {
+  const router = useRouter();
   return (
     <>
-      <h1>User</h1>
+      <h1>{router.query.user}</h1>
       <ImageList data={posts} />
     </>
   )
@@ -20,12 +22,15 @@ export async function getServerSideProps(context) {
     if (!user) throw new Error();
 
     // query posts (_id has to be converted to a string)
-    const posts = (await db.collection("posts").find({ username: context.params.user }).toArray()).map((post) => {
-      return {
-        ...post,
-        _id: post._id.toString(),
-      }
-    });
+    const posts = (await db.collection("posts").find({ username: context.params.user })
+      .sort({ _id: -1 })
+      .toArray())
+      .map((post) => {
+        return {
+          ...post,
+          _id: post._id.toString(),
+        }
+      });
 
     return {
       props: {

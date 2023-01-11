@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Post({ post }) {
-  console.log(post);
   return (
     <>
       <h1>Post</h1>
