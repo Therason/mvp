@@ -39,7 +39,7 @@ export default function SignupForm() {
         <input type="text" ref={username}></input>
       </label>
       <label>Password:
-        <input type="text" ref={password}></input>
+        <input type="password" ref={password}></input>
       </label>
       <button onClick={handleSubmit}>Submit</button>
     </>
