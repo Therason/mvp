@@ -6,8 +6,9 @@ import styled from "styled-components";
 const Header = styled.header`
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
   gap: 20px;
-  background: rgba(21,20,20,0.75);
+  background: rgba(21,20,20,0.9);
   width: 100vw;
   max-width: 100%;
   height: 10vh;
@@ -33,12 +34,14 @@ const Header = styled.header`
   }
 `;
 
+const Home = styled(Link)``;
+
 export default function NavBar() {
   const { data: session } = useSession();
 
   return (
     <Header>
-      <Link href="/">Home</Link>
+      <Home href="/">Home</Home>
       <Link href="/browse">Browse</Link>
       {/* Display correct button if user is logged in or not */}
       {!session && <Link href="/userAuth">Log In</Link>}

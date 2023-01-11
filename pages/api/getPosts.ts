@@ -22,7 +22,11 @@ export default async function handler(
   const db = conn.db();
 
   // TODO: pagination
-  const docs = await db.collection("posts").find({}).toArray();
+  const docs = await db
+    .collection("posts")
+    .find({})
+    .sort({ _id: -1 })
+    .toArray();
 
   conn.close();
 

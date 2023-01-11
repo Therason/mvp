@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 
 // page where users make posts
@@ -8,6 +9,8 @@ export default function NewPost() {
   const description = useRef<HTMLInputElement>(null);
 
   const {data: session, status} = useSession();
+
+  const router = useRouter();
 
   const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,8 +39,8 @@ export default function NewPost() {
         throw new Error(data.message || "Error creating new post");
       }
 
-      // TODO: redirect to post on success, use data.insertedId
-      console.log(data);
+      // redirect to post on success, use data.insertedId
+      router.push(`/posts/${data.insertedId}`);
 
     } catch(error) {
       console.error(error);
