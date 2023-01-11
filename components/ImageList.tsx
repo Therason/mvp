@@ -9,6 +9,11 @@ const Container = styled.div`
   gap: 20px;
 `;
 
+const Img = styled(Image)`
+  object-fit: cover;
+  cursor: pointer;
+`;
+
 export default function ImageList({ data }) {
   const router = useRouter();
 
@@ -19,7 +24,7 @@ export default function ImageList({ data }) {
 
   return (
     <Container>
-      {data.map((post) => <Image onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} width="200" height="200" style={{objectFit: 'cover'}} />)}
+      {data.map((post) => <Img width="200" height="200" onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} />)}
     </Container>
   );
 }
