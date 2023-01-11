@@ -162,12 +162,11 @@ export default function Home() {
         </div>
         <div className="rellax">
           <h1><span className={`${merriweather.className} rainbow`}>Art</span> <span className={rowdies.className}>Block</span> <span className={roboto.className}>Avenue</span></h1>
-          <p>Because we really need another social media site I guess...</p>
+          <p>Yet another social media site...</p>
         </div>
       </Container1>
       <Container2>
         <h1 className="rellax">Social media without the hassle. <Link href="https://github.com/Therason/mvp" target="_blank"><Image src="/github.svg" width="100" height="100" alt="github logo" /></Link></h1>
-
       </Container2>
     </>
   )

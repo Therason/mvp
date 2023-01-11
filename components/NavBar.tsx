@@ -17,15 +17,18 @@ const Header = styled.header`
   z-index: 100;
   position: sticky;
   top: 0px;
+  overflow: hidden;
 
   * {
     position: relative;
     font-weight: bold;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
   }
 
   *:after {
-    content: "";
+    content: "+";
+    font-size: 3rem;
+    text-align: right;
     position: absolute;
     top: 0;
     left: 0;
@@ -56,6 +59,10 @@ const Header = styled.header`
     color: #3992ff;
   }
 
+  .last {
+    margin-left: auto;
+  }
+
 
   button {
     background: none;
@@ -77,9 +84,9 @@ export default function NavBar() {
       <Home href="/">Home</Home>
       <Link href="/browse">Browse</Link>
       {/* Display correct button if user is logged in or not */}
-      {!session && <Link href="/userAuth">Log In</Link>}
+      {!session && <Link className="last" href="/userAuth">Log In</Link>}
       {session && <Link href="/newPost">New Post</Link>}
-      {session && <button onClick={() => {
+      {session && <button className="last" onClick={() => {
           signOut();
           router.push('/');
       }}>Sign Out</button>}

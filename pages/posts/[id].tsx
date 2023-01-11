@@ -2,15 +2,27 @@ import connect from "../../lib/db";
 import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: inline-flex;
+  gap: 10px;
+  margin: 20px 40px;
+
+  img {
+    background: #353333;
+  }
+`;
 
 export default function Post({ post }) {
   return (
-    <>
-      <h1>Post</h1>
-      <Link href={`/users/${post.username}`}>{post.username}</Link>
-      <Image src={post.url} alt={post.description} width={800} height={800} style={{objectFit: 'contain'}}/>
-      <p>{post.description}</p>
-    </>
+    <Container>
+      <Image src={post.url} alt={post.description} width={500} height={500} style={{objectFit: 'contain'}}/>
+      <div>
+        <Link href={`/users/${post.username}`}>{post.username}</Link>
+        <p>{post.description}</p>
+      </div>
+    </Container>
   );
 }
 
