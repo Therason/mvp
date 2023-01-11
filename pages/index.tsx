@@ -84,23 +84,6 @@ const ImgAnimation = keyframes`
   }
 `;
 
-const Mona = styled(Image)`
-  position: absolute;
-  transform: translateX(-200%);
-  z-index: -1;
-  animation: ${ImgAnimation} 45s linear infinite;
-  animation-delay: 0s;
-`;
-
-const Lit = styled(Image)`
-  position: absolute;
-  margin-top: 200px;
-  transform: translateX(-200vw);
-  z-index: -2;
-  animation: ${ImgAnimation} 60s linear infinite;
-  animation-delay: 0s;
-`;
-
 interface Props {
   margin?: number;
   time: number;
@@ -114,8 +97,6 @@ const Img = styled(Image)<Props>`
   animation: ${ImgAnimation} ${props => props.time}s linear infinite;
   animation-delay: 0s;
 `;
-
-
 
 // homepage component
 export default function Home() {
