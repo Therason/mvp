@@ -1,6 +1,7 @@
 import { signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -68,6 +69,7 @@ const Home = styled(Link)``;
 
 export default function NavBar() {
   const { data: session } = useSession();
+  const router = useRouter();
 
   return (
     <Header>
@@ -76,7 +78,10 @@ export default function NavBar() {
       {/* Display correct button if user is logged in or not */}
       {!session && <Link href="/userAuth">Log In</Link>}
       {session && <Link href="/newPost">New Post</Link>}
-      {session && <button onClick={() => signOut()}>Sign Out</button>}
+      {session && <button onClick={() => {
+          signOut();
+          router.push('/');
+      }}>Sign Out</button>}
     </Header>
   );
 }
