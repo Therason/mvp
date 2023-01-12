@@ -49,8 +49,6 @@ export default function User({ posts, saved }) {
 
   // user is looking at their own profile
   if (session && session.user.username === router.query.user) {
-    console.log('posts:',posts)
-    console.log('saved:',saved)
     return (
       <>
         <Container>
