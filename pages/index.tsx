@@ -156,8 +156,8 @@ export default function Home() {
     <>
       <Container1>
         <div className="rellaxI">
-          <Img time={90} margin={100} src="/le_lit.jpg" alt="le lit" width="256" height="197" />
-          <Img time={70} margin={-200} src="/starry.jpg" alt="starry night" width="384" height="313" />
+          <Img time={90} margin={100} src="/le_lit.jpg" alt="le lit" width="200" height="200" />
+          <Img time={70} margin={-200} src="/starry.jpg" alt="starry night" width="300" height="300" />
           <Img priority time={50} margin={-100} src="/monalisa.jpg" alt="mona lisa" width="400" height="400"/>
         </div>
         <div className="rellax">
