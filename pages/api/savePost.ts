@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
 import connect from "../../lib/db";
+import { ObjectId } from "mongodb";
 
 type Data = {
   message: string;
@@ -33,11 +34,20 @@ export default async function handler(
     return;
   }
 
-  console.log(req.body);
-
   // connect to the DB
-  // const conn = await connect();
-  // const db = conn.db();
+  const conn = await connect();
+  const db = conn.db();
 
-  res.status(200).json({ message: "Post saved!" });
+  const result = await db.collection("users").updateOne(
+    {
+      username: username,
+    },
+    {
+      $push: {
+        saved: new ObjectId(postId),
+      },
+    }
+  );
+
+  res.status(200).json({ message: "Post saved!", ...result });
 }
