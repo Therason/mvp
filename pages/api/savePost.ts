@@ -33,7 +33,11 @@ export default async function handler(
     return;
   }
 
+  console.log(req.body);
+
   // connect to the DB
-  const conn = await connect();
-  const db = conn.db();
+  // const conn = await connect();
+  // const db = conn.db();
+
+  res.status(200).json({ message: "Post saved!" });
 }

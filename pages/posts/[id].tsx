@@ -5,6 +5,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Roboto_Mono } from "@next/font/google";
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
 
@@ -39,13 +40,23 @@ const Info = styled.div`
 
 export default function Post({ post }) {
   const [ bookmark, setBookmark ] = useState<string>("/bookmark_reg.svg");
+  const {data: session} = useSession();
 
-  const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault();
     if (bookmark === "/bookmark_solid.svg") return;
     setBookmark("/bookmark_solid.svg");
 
     // TODO: add route to save a post
+    const res = await fetch("/api/savePost", {
+      method: 'POST',
+      body: JSON.stringify({ username: session.user.username, postId: post._id }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -54,7 +65,7 @@ export default function Post({ post }) {
       <div>
         <Info>
           <Link href={`/users/${post.username}`}><Image src="/user.svg" width="30" height="30" alt="profile" /> {post.username}</Link>
-          <Image onClick={handleClick} src={bookmark} width="30" height="30" alt="bookmark" />
+          {session && <Image onClick={handleClick} src={bookmark} width="30" height="30" alt="bookmark" />}
         </Info>
         <p className={roboto.className}>{post.description}</p>
       </div>
