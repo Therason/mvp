@@ -4,17 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { Roboto_Mono } from "@next/font/google";
+import { useState } from "react";
 
 const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
 
 const Container = styled.div`
   display: inline-flex;
-  gap: 10px;
+  gap: 40px;
   margin: 20px 40px;
-
-  div {
-    margin: 20px;
-  }
 
   a {
     font-size: 2rem;
@@ -29,12 +26,26 @@ const Img = styled(Image)`
   background: #353333;
 `;
 
+const Info = styled.div`
+  display: inline-flex;
+  width: 100%;
+
+  img {
+    margin-left: auto;
+    cursor: pointer;
+  }
+`;
+
 export default function Post({ post }) {
+  const [ bookmark, setBookmark ] = useState<string>("/bookmark_reg.svg");
   return (
     <Container>
       <Img src={post.url} alt={post.description} width={500} height={500} style={{objectFit: 'contain'}}/>
       <div>
-        <Link href={`/users/${post.username}`}><Image src="/user.svg" width="30" height="30" alt="profile" /> {post.username}</Link>
+        <Info>
+          <Link href={`/users/${post.username}`}><Image src="/user.svg" width="30" height="30" alt="profile" /> {post.username}</Link>
+          <Image src={bookmark} width="30" height="30" alt="bookmark" />
+        </Info>
         <p className={roboto.className}>{post.description}</p>
       </div>
     </Container>
