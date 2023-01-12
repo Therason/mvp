@@ -24,7 +24,12 @@ export default function ImageList({ data }) {
 
   return (
     <Container>
-      {data.map((post) => <Img width="200" height="200" onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} />)}
+      {data.map((post, i: number) => {
+        if (i < 4) {
+          return <Img  priority width="200" height="200" onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} />
+        }
+        return <Img width="200" height="200" onClick={handleClick} id={post._id} key={post._id} src={post.url} alt={post.description} />
+      })}
     </Container>
   );
 }
