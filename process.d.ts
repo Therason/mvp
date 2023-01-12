@@ -3,5 +3,6 @@ declare namespace NodeJS {
     NEXTAUTH_SECRET: string;
     NEXTAUTH_URL: string;
     URL: string;
+    MONGO_STRING: string;
   }
 }
