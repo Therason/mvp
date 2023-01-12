@@ -85,10 +85,7 @@ export default function NavBar() {
       {/* Display correct button if user is logged in or not */}
       {!session && <Link className="last" href="/userAuth">Log In</Link>}
       {session && <Link href="/newPost">New Post</Link>}
-      {session && <button className="last" onClick={() => {
-          signOut();
-          router.push('/');
-      }}>Sign Out</button>}
+      {session && <Link className="last" href={`/users/${session.user.username}`}>Profile</Link>}
     </Header>
   );
 }
