@@ -49,5 +49,6 @@ export default async function handler(
     }
   );
 
+  conn.close();
   res.status(200).json({ message: "Post saved!", ...result });
 }
