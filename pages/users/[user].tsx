@@ -4,10 +4,24 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useSession, getSession } from "next-auth/react";
 import { useState } from "react";
+import Image from "next/image";
 
 const Container = styled.div`
-  text-align: center;
-  margin-top: 20px;
+  padding: 20px 20vw 0;
+  display: inline-flex;
+  width: 100vw;
+  max-width: 100%;
+  justify-content: space-between;
+  gap: space-between;
+
+  div {
+    display: inline-flex;
+    gap: 1rem;
+  }
+
+  h1 {
+    cursor: pointer;
+  }
 `;
 
 export default function User({ posts, saved }) {
@@ -21,19 +35,23 @@ export default function User({ posts, saved }) {
     console.log('posts:',posts)
     console.log('saved:',saved)
     return (
-      <Container>
-        <h1 onClick={() => setImages(posts)}>{router.query.user}</h1>
-        <h1 onClick={() => setImages(saved)}>saved</h1>
+      <>
+        <Container>
+          <div><Image src="/user.svg" width="30" height="30" alt="profile" /> <h1 onClick={() => setImages(posts)}>{router.query.user}</h1></div>
+          <h1 onClick={() => setImages(saved)}>saved</h1>
+        </Container>
         <ImageList data={images} />
-      </Container>
+      </>
     )
   }
 
   return (
-    <Container>
-      <h1>{router.query.user}</h1>
+    <>
+      <Container>
+        <div><Image src="/user.svg" width="30" height="30" alt="profile" /> <h1>{router.query.user}</h1></div>
+      </Container>
       <ImageList data={posts} />
-    </Container>
+    </>
   )
 }
 
@@ -70,7 +88,7 @@ export async function getServerSideProps(context) {
           ...post,
           _id: post._id.toString(),
         }
-      }));
+      }).reverse());
 
       return {
         props: {
