@@ -1,11 +1,17 @@
 import ImageList from "../components/ImageList";
+import styled from "styled-components";
+
+const Container = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
 
 export default function Browse({ data }) {
   return (
-    <>
+    <Container>
       <h1>Browse</h1>
       <ImageList data={data} />
-    </>
+    </Container>
   )
 }
 

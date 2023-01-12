@@ -3,25 +3,39 @@ import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { Roboto_Mono } from "@next/font/google";
+
+const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
 
 const Container = styled.div`
   display: inline-flex;
   gap: 10px;
   margin: 20px 40px;
 
-  img {
-    background: #353333;
-    border: 1px solid black;
+  div {
+    margin: 20px;
   }
+
+  a {
+    font-size: 2rem;
+  }
+
+  p {
+    margin-top: 20px;
+  }
+`;
+
+const Img = styled(Image)`
+  background: #353333;
 `;
 
 export default function Post({ post }) {
   return (
     <Container>
-      <Image src={post.url} alt={post.description} width={500} height={500} style={{objectFit: 'contain'}}/>
+      <Img src={post.url} alt={post.description} width={500} height={500} style={{objectFit: 'contain'}}/>
       <div>
-        <Link href={`/users/${post.username}`}>{post.username}</Link>
-        <p>{post.description}</p>
+        <Link href={`/users/${post.username}`}><Image src="/user.svg" width="30" height="30" alt="profile" /> {post.username}</Link>
+        <p className={roboto.className}>{post.description}</p>
       </div>
     </Container>
   );
