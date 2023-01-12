@@ -1,14 +1,20 @@
 import connect from "../../lib/db"
 import ImageList from "../../components/ImageList";
 import { useRouter } from "next/router";
+import styled from "styled-components";
+
+const Container = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
 
 export default function User({ posts }) {
   const router = useRouter();
   return (
-    <>
+    <Container>
       <h1>{router.query.user}</h1>
       <ImageList data={posts} />
-    </>
+    </Container>
   )
 }
 
