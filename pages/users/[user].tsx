@@ -2,7 +2,7 @@ import connect from "../../lib/db"
 import ImageList from "../../components/ImageList";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { useSession, getSession } from "next-auth/react";
+import { useSession, getSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -19,8 +19,25 @@ const Container = styled.div`
     gap: 1rem;
   }
 
-  h1 {
+  h1, button {
     cursor: pointer;
+  }
+
+  button {
+    background: inherit;
+    border: none;
+    color: inherit;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  *:hover {
+    border-radius: 10px;
+    background: #474343;
+  }
+
+  & > * {
+    padding: 5px 10px;
   }
 `;
 
@@ -39,6 +56,10 @@ export default function User({ posts, saved }) {
         <Container>
           <div><Image src="/user.svg" width="30" height="30" alt="profile" /> <h1 onClick={() => setImages(posts)}>{router.query.user}</h1></div>
           <h1 onClick={() => setImages(saved)}>saved</h1>
+          <button onClick={() => {
+            signOut();
+            // router.push("/");
+          }}>Sign Out</button>
         </Container>
         <ImageList data={images} />
       </>
