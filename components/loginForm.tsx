@@ -20,7 +20,6 @@ export default function LoginForm() {
       username: username.current.value,
       password: password.current.value,
     })
-    console.log('result', result)
 
     // redirect on success
     if (!result.error && result.ok) {
@@ -28,7 +27,7 @@ export default function LoginForm() {
     }
 
     // TODO: alert user of invalid credentials
-    console.error(result.error)
+    alert('Invalid credentials!');
   }
 
   return (

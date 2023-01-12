@@ -27,9 +27,9 @@ export default function SignupForm() {
       if (!res.ok) {
         throw new Error(data.message || 'Error creating a user')
       }
-      console.log(data);
-    } catch(error) {
-      console.error(error);
+    } catch {
+      // user likely already exists(?)
+      alert('Username taken!');
     }
   }
 
