@@ -90,6 +90,7 @@ export async function getServerSideProps(context) {
         }
       }).reverse());
 
+      conn.close();
       return {
         props: {
           posts,
@@ -98,6 +99,7 @@ export async function getServerSideProps(context) {
       }
     }
 
+    conn.close();
     return {
       props: {
         posts
@@ -105,6 +107,7 @@ export async function getServerSideProps(context) {
     }
   } catch(error) {
     // 404 if post id isn't found
+    conn.close();
     console.error(error)
     return {
       notFound: true,

@@ -43,6 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     password: await hashPass(password),
   });
 
+  conn.close();
   res.status(201).json({ message: "User created", ...status });
 };
 
