@@ -55,8 +55,8 @@ export default function User({ posts, saved }) {
           <div><Image src="/user.svg" width="30" height="30" alt="profile" /> <h1 onClick={() => setImages(posts)}>{router.query.user}</h1></div>
           <h1 onClick={() => setImages(saved)}>saved</h1>
           <button onClick={() => {
-            signOut();
-            // router.push("/");
+            signOut({ redirect: false });
+            router.push("/");
           }}>Sign Out</button>
         </Container>
         <ImageList data={images} />
