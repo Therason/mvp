@@ -8,7 +8,6 @@ const Header = styled.header`
   display: inline-flex;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
   background: rgba(21,20,20,0.95);
   width: 100vw;
   max-width: 100%;
@@ -22,11 +21,11 @@ const Header = styled.header`
   * {
     position: relative;
     font-weight: bold;
-    padding: 0.5rem 2rem 0.5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   *:after {
-    content: "+";
+    content: "";
     font-size: 3rem;
     text-align: right;
     position: absolute;
