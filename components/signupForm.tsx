@@ -1,8 +1,12 @@
-import { MouseEventHandler, useRef } from "react";
+import { useRef } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function SignupForm() {
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
 
   // POST to API endpoint
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -12,7 +16,10 @@ export default function SignupForm() {
     const enteredPass = password.current.value
 
     // TODO: better form validation
-    if (enteredPass.length < 8 || enteredUser.length === 0) return;
+    if (enteredPass.length < 8 || enteredUser.length === 0) {
+      alert('Please enter a username and secure password');
+      return;
+    };
 
     try {
       const res = await fetch('/api/auth/signup', {
@@ -27,6 +34,16 @@ export default function SignupForm() {
       if (!res.ok) {
         throw new Error(data.message || 'Error creating a user')
       }
+
+      // auto sign-in
+      const result = await signIn('credentials', {
+        redirect: false,
+        username: username.current.value,
+        password: password.current.value,
+      });
+      if (!result.error && result.ok) {
+        router.push('/')
+      };
     } catch {
       // user likely already exists(?)
       alert('Username taken!');
