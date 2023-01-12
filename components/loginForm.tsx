@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 
 export default function LoginForm() {
   const router = useRouter()
@@ -24,10 +23,11 @@ export default function LoginForm() {
     // redirect on success
     if (!result.error && result.ok) {
       router.push('/')
+    } else {
+      // TODO: alert user of invalid credentials
+      alert('Invalid credentials!');
     }
 
-    // TODO: alert user of invalid credentials
-    alert('Invalid credentials!');
   }
 
   return (
