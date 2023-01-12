@@ -3,6 +3,7 @@ import ImageList from "../../components/ImageList";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useSession, getSession } from "next-auth/react";
+import { useState } from "react";
 
 const Container = styled.div`
   text-align: center;
@@ -13,15 +14,17 @@ export default function User({ posts, saved }) {
   const router = useRouter();
   const {data: session} = useSession();
 
+  const [images, setImages] = useState(posts);
+
   // user is looking at their own profile
   if (session && session.user.username === router.query.user) {
     console.log('posts:',posts)
     console.log('saved:',saved)
     return (
       <Container>
-        <h1>{router.query.user}</h1>
-        <h1>test</h1>
-        <ImageList data={posts} />
+        <h1 onClick={() => setImages(posts)}>{router.query.user}</h1>
+        <h1 onClick={() => setImages(saved)}>saved</h1>
+        <ImageList data={images} />
       </Container>
     )
   }
@@ -59,11 +62,20 @@ export async function getServerSideProps(context) {
     // retrieve saved posts if user is on their own profile
     if (session && session.user.username === context.params.user) {
       const user = await db.collection("users").findOne({ username: session.user.username });
-      console.log(user.saved)
+
+      // "merge" post ids with actual posts
+      const saved = !user.saved ? [] : await Promise.all(user.saved.map(async (id) => {
+        const post = await db.collection("posts").findOne({ _id: id });
+        return {
+          ...post,
+          _id: post._id.toString(),
+        }
+      }));
+
       return {
         props: {
           posts,
-          saved: !user.saved ? [] : user.saved.map((id) => id.toString())
+          saved
         }
       }
     }
