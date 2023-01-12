@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { Roboto_Mono } from "@next/font/google";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const roboto = Roboto_Mono({style: 'normal', subsets: ["latin"], weight: "300"});
 
@@ -12,6 +12,7 @@ const Container = styled.div`
   display: inline-flex;
   gap: 40px;
   margin: 20px 40px;
+
 
   a {
     font-size: 2rem;
@@ -38,13 +39,22 @@ const Info = styled.div`
 
 export default function Post({ post }) {
   const [ bookmark, setBookmark ] = useState<string>("/bookmark_reg.svg");
+
+  const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.preventDefault();
+    if (bookmark === "/bookmark_solid.svg") return;
+    setBookmark("/bookmark_solid.svg");
+
+    // TODO: add route to save a post
+  };
+
   return (
     <Container>
       <Img src={post.url} alt={post.description} width={500} height={500} style={{objectFit: 'contain'}}/>
       <div>
         <Info>
           <Link href={`/users/${post.username}`}><Image src="/user.svg" width="30" height="30" alt="profile" /> {post.username}</Link>
-          <Image src={bookmark} width="30" height="30" alt="bookmark" />
+          <Image onClick={handleClick} src={bookmark} width="30" height="30" alt="bookmark" />
         </Info>
         <p className={roboto.className}>{post.description}</p>
       </div>
