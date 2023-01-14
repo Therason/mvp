@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -7,6 +7,8 @@ export default function LoginForm() {
 
   const username = useRef<HTMLInputElement>(null)
   const password = useRef<HTMLInputElement>(null)
+
+  const [ valid, setValid ] = useState<boolean>(true);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // TODO: alert user that the fields are required
@@ -25,7 +27,7 @@ export default function LoginForm() {
       router.push('/')
     } else {
       // TODO: alert user of invalid credentials
-      alert('Invalid credentials!');
+      setValid(false);
     }
 
   }
@@ -38,6 +40,7 @@ export default function LoginForm() {
       <label>Password:
         <input type="password" ref={password}></input>
       </label>
+      {!valid && <p style={{ color: '#f44250' }}>Invalid credentials!</p>}
       <button onClick={handleSubmit}>Submit</button>
     </>
   )
