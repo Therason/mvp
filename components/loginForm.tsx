@@ -8,6 +8,7 @@ export default function LoginForm() {
   const username = useRef<HTMLInputElement>(null)
   const password = useRef<HTMLInputElement>(null)
 
+  // validation state
   const [ valid, setValid ] = useState<boolean>(true);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {

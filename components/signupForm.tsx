@@ -6,6 +6,7 @@ export default function SignupForm() {
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
+  // validation state
   const [ validUsername, setValidUsername ] = useState<boolean>(true);
   const [ validPass, setValidPass ] = useState<boolean>(true);
   const [ notTaken, setNotTaken ] = useState<boolean>(true);
@@ -16,6 +17,7 @@ export default function SignupForm() {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    // reset validation
     setValidPass(true);
     setValidUsername(true);
     setNotTaken(true);
