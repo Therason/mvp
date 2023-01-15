@@ -33,7 +33,7 @@ const Header = styled.header`
     left: 0;
     width: 100%;
     height: 100%;
-    background: #2f2c2cf2;
+    background: #2f2c2c;
     z-index: -1;
     transform: scaleX(0);
     transform-origin: right;
