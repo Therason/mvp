@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
-import { MotionValue, useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 const Container = styled.div`
   margin: 20px 200px;
@@ -20,7 +20,8 @@ const Sec = styled.section`
   gap: 1rem;
   position: relative;
   scroll-snap-align: center;
-  perspective: 500px;
+  margin: 0;
+  padding: 0;
 
   h1 {
     font-size: 3rem;
@@ -53,7 +54,7 @@ function ImageContainer({id, url, description, user}) {
 export default function ScrollList({ data }) {
   return (
     <Container>
-      {data.map((post, i: number) => {
+      {data.map((post) => {
         return <ImageContainer id={post._id} key={post._id} url={post.url} description={post.description} user={post.username} />
       })}
     </Container>
