@@ -8,7 +8,7 @@ const Header = styled.header`
   display: inline-flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(21,20,20,0.95);
+  background: rgba(21,20,20);
   width: 100vw;
   max-width: 100%;
   height: 10vh;
@@ -33,7 +33,7 @@ const Header = styled.header`
     left: 0;
     width: 100%;
     height: 100%;
-    background: #2f2c2c;
+    background: #2f2c2cf2;
     z-index: -1;
     transform: scaleX(0);
     transform-origin: right;
