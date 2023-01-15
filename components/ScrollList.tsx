@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useScroll, useTransform, motion } from "framer-motion";
 
 const Container = styled.div`
-  margin: 20px 200px;
+  margin: 0px 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,7 @@ function ImageContainer({id, url, description, user}) {
       <div ref={containerRef}>
         <Image onClick={() => router.push(`/posts/${id}`)} width="300" height="300" id={id} key={id} src={url} alt={description} />
       </div>
-      <motion.h1 style={{ y }} onClick={() => router.push(`/users/${user}`)}>{user}</motion.h1>
+      <motion.h1 style={{ y, textDecoration: 'underline' }} onClick={() => router.push(`/users/${user}`)}>{user}</motion.h1>
     </Sec>
   );
 }

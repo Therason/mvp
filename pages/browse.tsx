@@ -1,12 +1,11 @@
 import ScrollList from "../components/ScrollList";
-import styled from "styled-components";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 
 export default function Browse({ data }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref });
-  const background = useTransform(scrollYProgress, [0, 1], ['#f44250', '#3992ff'])
+  const background = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], ['#f44250', '#fecc1b', '#6bd968', '#3992ff'])
 
   return (
     <motion.div ref={ref} style={{ background }}>
