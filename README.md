@@ -23,4 +23,4 @@ A simple art-themed social media site built as a 2 day MVP project. Although it 
 ## Homepage 🏠
 ![homepage](http://g.recordit.co/almvs2GuP9.gif)
 ## Browse 🔎
-![browse](http://g.recordit.co/jWiYx2dfLP.gif)
+
